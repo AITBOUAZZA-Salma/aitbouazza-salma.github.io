@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio de Salma Aït Bouazza – Supply chain, achats et logistique">
+<title>Salma Aït Bouazza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : un bordereau d'expédition. Le parcours se lit comme un itinéraire Tanger → Paris, chaque expérience est une étape avec son code de suivi et son tampon « livré ». */
+:root{
+  --paper:#f2f4f6; --sheet:#ffffff; --ink:#15233a; --muted:#56637a; --rule:#d5dbe3;
+  --route:#0d6e6b; --route-soft:#d9ecea; --stamp:#b35a12; --stamp-soft:#f6e6d6;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0e1522; --sheet:#152034; --ink:#e7ecf3; --muted:#9aa7bb; --rule:#2a3850;
+  --route:#4fc2bb; --route-soft:#143b3d; --stamp:#f0a25c; --stamp-soft:#3a2a1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1522; --sheet:#152034; --ink:#e7ecf3; --muted:#9aa7bb; --rule:#2a3850;
+  --route:#4fc2bb; --route-soft:#143b3d; --stamp:#f0a25c; --stamp-soft:#3a2a1a; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:1060px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.08}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+a{color:var(--route)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--route);outline-offset:3px;border-radius:4px}
+
+/* En-tête bordereau */
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:22px 14px;border-bottom:1px dashed var(--rule)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center;padding-block:48px 36px}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);font-variation-settings:"wdth" 118;font-weight:800;letter-spacing:-.02em}
+.hero .role{font-family:var(--f-display);font-variation-settings:"wdth" 100;font-weight:500;font-size:clamp(1.1rem,2.4vw,1.45rem);color:var(--route);margin-top:14px}
+.hero p.pitch{max-width:60ch;margin:18px 0 0;color:var(--ink)}
+.photo{width:clamp(130px,18vw,190px);aspect-ratio:1;max-width:100%;border-radius:50%;overflow:hidden;border:6px solid var(--sheet);box-shadow:0 0 0 1px var(--rule)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--rule);border-radius:999px;background:var(--sheet);font-size:.92rem;color:var(--ink);text-decoration:none}
+.chip button{font:inherit;font-size:.75rem;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.05em;border:0;background:var(--route-soft);color:var(--route);padding:3px 8px;border-radius:999px;cursor:pointer}
+
+/* Chiffres clés */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--rule);background:var(--sheet);border-radius:6px}
+.kpi{padding:20px 22px;border-left:1px dashed var(--rule)}
+.kpi:first-child{border-left:0}
+.kpi b{display:block;font-family:var(--f-display);font-variation-settings:"wdth" 112;font-weight:800;font-size:2.3rem;line-height:1;color:var(--route);font-variant-numeric:tabular-nums}
+.kpi span{display:block;margin-top:8px;font-size:.9rem;color:var(--muted);line-height:1.4}
+
+section{padding-top:72px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.6rem);font-variation-settings:"wdth" 110;font-weight:700}
+
+/* Itinéraire */
+.route{position:relative;display:grid;gap:22px;padding-left:44px}
+.route::before{content:"";position:absolute;left:14px;top:10px;bottom:10px;border-left:3px dotted var(--route)}
+.leg{position:relative}
+.leg::before{content:"";position:absolute;left:-38px;top:26px;width:18px;height:18px;border-radius:50%;background:var(--sheet);border:4px solid var(--route)}
+.port{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--route);margin:0 0 -6px;padding-left:2px}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:24px 26px;display:grid;gap:16px}
+.card-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.card h3{font-size:1.45rem;font-variation-settings:"wdth" 104;font-weight:700}
+.org{margin-top:6px;color:var(--muted);font-size:.95rem}
+.code{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);border:1px solid var(--rule);padding:4px 8px;border-radius:4px;white-space:nowrap}
+.rows{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px 20px;margin:0}
+.rows dt{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.rows dd{margin:0;min-width:0}
+.rows ul{margin:0;padding-left:18px}
+.rows li+li{margin-top:4px}
+.stamp{justify-self:start;display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border:2px solid var(--stamp);color:var(--stamp);background:var(--stamp-soft);border-radius:4px;font-family:var(--f-display);font-variation-settings:"wdth" 90;font-weight:700;letter-spacing:.02em;transform:rotate(-1.2deg)}
+.stamp small{font-family:var(--f-mono);font-weight:500;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.8rem;padding:3px 10px;border-radius:999px;background:var(--route-soft);color:var(--route)}
+
+/* Formation / compétences */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:24px 26px;min-width:0}
+.panel h3{font-size:1.2rem;font-variation-settings:"wdth" 104;font-weight:700}
+.panel p{margin:6px 0 0;color:var(--muted)}
+.edu+.edu{margin-top:20px;padding-top:20px;border-top:1px dashed var(--rule)}
+.skill-group+.skill-group{margin-top:22px}
+.skill-group .tags{margin-top:10px}
+.lang{display:grid;gap:12px;margin-top:12px}
+.lang div{display:grid;grid-template-columns:90px minmax(0,1fr) 40px;gap:12px;align-items:center;font-size:.95rem}
+.bar{height:8px;border-radius:4px;background:var(--route-soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--route)}
+.lang em{font-style:normal;font-family:var(--f-mono);font-size:.8rem;color:var(--muted);text-align:right}
+
+.cta{margin-top:72px;background:var(--ink);color:var(--paper);border-radius:6px;padding:40px 36px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
+.cta h2{font-size:clamp(1.7rem,3.6vw,2.4rem);font-variation-settings:"wdth" 112;font-weight:800}
+.cta p{margin:12px 0 0;max-width:58ch;opacity:.85}
+.cta .chip{background:transparent;color:var(--paper);border-color:color-mix(in srgb,var(--paper) 35%,transparent)}
+.cta .chips{flex-direction:column;align-items:stretch;margin:0}
+footer{margin-top:28px;text-align:center}
+
+@media (max-width:800px){
+  .hero{grid-template-columns:1fr;gap:24px;padding-block:32px 24px}
+  .photo{order:-1}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi:nth-child(3){border-left:0}
+  .kpi:nth-child(n+3){border-top:1px dashed var(--rule)}
+  .two,.cta{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .route{padding-left:30px}.route::before{left:8px}.leg::before{left:-30px}
+  .rows{grid-template-columns:1fr;gap:4px}
+  .rows dd{margin-bottom:10px}
+  .card,.panel{padding:20px}
+  .cta{padding:28px 22px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .stamp{transition:transform .2s ease}
+  .card:hover .stamp{transform:rotate(0deg) scale(1.03)}
+}
+img{max-width:100%}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <span class="mono">Portfolio · Supply Chain, Achats &amp; Logistique</span>
+    <span class="mono">Disponible immédiatement</span>
+  </div>
+
+  <header class="hero">
+    <div>
+      <h1>Salma<br>Aït Bouazza</h1>
+      <div class="role">Supply chain, achats et logistique · Double Master Bac+5</div>
+      <p class="pitch">Je fais en sorte que les marchandises arrivent au bon endroit, au bon moment et au bon coût. De Tanger à Paris, j'ai suivi des fournisseurs internationaux, géré des commandes sous SAP, fiabilisé des stocks et piloté la distribution de véhicules neufs vers un réseau de concessions. Je cherche un CDI en supply chain, achats, logistique ou conseil.</p>
+      <div class="chips">
+        <span class="chip"><span id="mail">salma.aitbouaza@gmail.com</span><button type="button" id="copy-mail" data-copy="salma.aitbouaza@gmail.com">Copier</button></span>
+        <span class="chip"><span>06 03 72 45 48</span><button type="button" id="copy-tel" data-copy="06 03 72 45 48">Copier</button></span>
+        <a class="chip" href="https://www.linkedin.com/in/salma-ait-bouazza" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="photo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAFoAWgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD00dOaCKXFISa5zUKU0lLQAmBSkYFGKTNADgRR3ptOWkwFpBTjQBQA3vSinEUAUAKoyad0NIBS0AAzSiilFFgFXinqKaPanLQA7FG2nAUoGaAGcdMUEAcnj1NOYhRnBIHWqF/qMFnF5twwAOdqA8n3+lAFkuMEjBx1PQCm/aUAySBnpzXmfiL4rWFm5FsRdSL/AMs4uVX8elcFqvxZ1ueRmtmW2Q8EKcn8apRA+imu4YQDJIFJ96iTVLZ3AjlUqeM54zXyrP431yRiX1K5Kk5KGQ4p0XjTWRhf7QuF5yMtnFHKB9XiQlsKylQO/NSA9DgketfOXh34xappEnl3ZF3F0JJ5Fen2fxV0iSxiuWul2t1UnkH0pWA77egXk0oKt05rmdD8daRqsqot1Crt91ScE/nXTlQ6CROM+nekAhGaYVqTOeaGoAhxijHFOIphoAYc5pO1PIpMUxjRjHSmn6VJgdKaRg0DGAc0EU/ikI5pCYzbSEU6k70xoYRSU4im0CYEZopaKQhM0pOaQc9qMYNMBcUY5paDQMSgjNFKKAExilWg80qigQ7FB4paKLAGKXpS0uMiiwCDmlFIOtOxQMSlApcU5RxQIAR0FPUU1V56CpFHNIBelHBOM496UjHWua8beMLTwnpLXDOpupBthTuW+lCVwE8XeMdP8N27vPKAIh9wHLO/ZRXhHiPxtqfia6kMkzRQOf8AVKf4fQn+lYuv+IL3Wbt7i8laSVsnBPC561lx3OxSN2N3BOOTWiiBLe3e0GODKx57fxH3rLeYLzuGT681YlDPjDFvUDt9arPFgZOPoBTBiIN+WZhx6mnozTuI41ye+KRcrHgAfN6mtnQNLDyebITsXkkd6TdgimyudLjsYVaVi0rnIX+6KSWUYwAT6Y4qxrE5lum7AHgdxWZPJheTnPpQgbsKl7PZzLLHI6ODkMp5FeneAvjTe6M6W2uSG5s3wBKRzH9fb3ry23eN22vyB0zQG+yzHY2VB+uP/rU7CPsrS9TttUtVubWVJYXAZWDZzmrmK+afhd4+m8M6qlpNORZznaEdvlRz0HsDX0dYahDqNss0Jyrc47g+lZtDJm4FR96mYY60zGTxSAaaaQSM0/aByaaaAuNFIee1OxRg96AG0hp2KaRigBuKQ0pHpQaEMjNIetONIaYxuaKCtFAhcUY5pQKUinYQUUAUtIY0ilAxS0EdKBABmlpOlLQgCnAUgFKDTAcOKKTOKUGgQLTsUClxSAQCpFHFNC1IqmgYKMGngZoCjNJK5iUY5Y9Aen1NIRn6/rFto2nT3Nw4CxoW59q+bfF3iS68R6g99ePt3DEanpGvb8a7H4qeKY76+m02KZnhtzmRh0d/T6V5fKSWLyuN2MnPSMf41rGNgehTKAliSwUdM9WNQOojbdK+M9h1qzH9q1m7Sw0uItI38Xf6n0r1fwf8JrKwhWbUU+1XJGWLcgH/AArOrWjT3N6OHlU2PJ43kxiK3fZ7rTns7qRQfLIHuK+in8FaakfFtEUI5XFYd/4G0xl3xI8XsDXMsbFnZ/Z7XU8Qh0mdpBmM47nFdHNJHp2lJDFjcx+Y967CfwaoOYzkD1FYHiDQp0h2JgBfSrVeMmZywsonD3TkuSTnnPPWqcr7uozxwfWr1xCRlT99eCKy5iQWA4YGuuOxwS3E3bTgfhUocSjJ/wD1VXdg6ZHBB4oRiD7H+dMkfHKySfMcr057V9B/Bnxel7YfYZpD9ogIByedvZh6+lfP0qBunGa3/A2vy6FrltdJJtQMEkB6FT2NS0Uj6/647gjOaTpVfSbxNQs1ljOVOPwOKtEc9MVnYBhNNp5BHamlaLAIODR1oNHQUhoaeKa3NP600igBg4oIFB69KOtADGpuakIpmKCkxDmig0UwHcClAyKNvNL04pkjelFKTmgCiwCAcU6iigBKcB7U3vT80ABpMc0EUCgBSKUUdqAM0XCw4ClFJ0p1IQ9aeDUY6U9On1p2AeO5rmfGniCPQdHluWb94ykRgdc9h+NdHK4jiYnoBz9K8P8Ail4jOoaoLKI5ht8MTn7zGmlqB5/fzzXU7ySsFAO+Rj/e/wDrVzr/AGnVdQS0s0Y724XuR/earWs3bZ8rdkk7nx39q9W+Evw+8i2XVb+LE0/Khh91e1KrUUIm9Ck5yNb4c/DyHRbZbh03XEgBdyOa9KjskijGAKksbWNIwIxgDjB71LM4HFeTKXO7s9mKUVZGXcqcnHQdqzbmLzD9K1pV5PvVGUAVk4msWZclsAMVz+q6YJUdcZB6n0rqZACSaoXQBU8cmiLaY5ao8S8S6YbOZpNmAD1HeuRulYsSWByevrXsXizTop7SQMPU5rx+VPLuZIjnCnH4GvXw1S6szw8XT5XdFWNNrMp6GlAOdvftUpQ5GcfMMfjTim4KRjJH8q6WcYoG9Scc4qKImOXHYnFWI8K2M9ahuEKMW64pDufT3wW1w6r4XHmMXkibY+Tzxxn8q9CIzyK+fv2e9a8jWrjTmY7Z4y4B6ZHWvoLjGcVDKGnNIeacTxTRzSYhu2m7eakxSHrSGR96QDOacec0mcCgBhHtSEU4mmgGkAw80BacRg0lAETCind6KYXHGkxR1pegphcMUhp2M0mMUAAFLijNGcUAIOtOpMZpaAF4pRim4paGAp5pQBQKXFIByjBpwApFwKdigQdKcFzQBmlIwv1pgc/431+Hw7oN3eO678BEU9Wz2Ar5rudRkupZppmyzFpZDnpnsK7v43eIzLqMOnxOTDCpyc9T3ryq/kMNskAyZZmDsP5LVxGbHgTw3d+MfE6xoUEcJEjs44B7Cvd5YNY8JYnvpPPtAAAUxtX0GK8n+Guq23hS3vLqaYBsA8nlvX612E/xZsdSj8mUQvGyE7TMuW9sZrmqXk7NaHoUUoRvfU9B0fxjpuqAIswhlHDI/HPtWlJcpKSAR7V4kLy0u5RPpdx82f8AUscOo9R6iuu8La3c3Ehgmbce2eorCdNLY3p1W9Gdw+QoHFUZeCQpqaS6+VecL6+tUZrxEJwR1xWDidKZHM2CazrhgQcnFW3l3Lkfqao3BLA4Gai3cq5ga0BJGy43e1eO69aeRqLuFwGzXsmoghG7GvNPFNv8xYdRXXhnqcGKV0cpKhzx/fBH4igAYKnqDuFSXXyRKw/uqcUx/k8t+DnrXpLY8l7g4wxYdsUSrvIHZloOBGe5wf0NC5kEf5VIzrPhNqZ0rxvpE3AV5vJfP91gR/PFfV0WdpXptYivjDSJzY30Vyh5hmRwfTDZr7Ns5lureC5XpcRLJ+JANRIpDj1pOlPYU3pUjE3etIaUjHNNPNACGmk9qcaaRnpQA00ZpTSdqQhCM00jFOpDQAw0UpFFFxBtopRRj3qgDFNNPpCM0DGgZpcZpcUUAGKO9GfwpwoAQ0Y4opRQAq04CkFOBFACqKeKaKcKBD1rP1y/Fhp00mTuYbVAq9kqM8VyHj/VF03Rby5LZWOE457njNAHz34u1Eal4kupy26BHxn2HQfiap6Jo9x4h1cxwoXdBk8cLnv+VULmQwnLHJzvI7sx6D86+h/hp4Eh8OeG7eW4Qf2hdKJpyRyCeQv4Cs61TkiduFo+0l5HGT/DQXGlrCI0aZAOGo8RWvhjTPh8+lf2E1jrSyBblooQzPH6o+Oh7969Wu7F4F3Km5W6iua1fTJrmMqqiUdQrjpXPRxLW5118GnseAeHbW/kux9j83bCC8m45KAdMH+le2+BZf7TaPzBiZlxuA4YjvWUfBM9yxCW6pnk7OOfwrtvCOhR6PFFkOPJy25zk061aLRFCg4uxPrkhsQI3XBXvmuM1jWmtyroSRnkCtvxjq++VmB+Y+lefXN5NLIWI+TOKxpvmOio+U0f+E3uIE+dQR6H+VTW3xCt5CFuIChPdOa59rsFmWWayVUG/DfMf0p8Go6FdMwvrWBVVtvmwt8pNdLpLscvtJJ6M6ObXbC+iLJJj/e7Vw/jB1CllIKt3FdBJo2m3MRNnKyq3bdkVxHiuO5sW+zud8B+6/pU04Lm0FVnLl1MWU+bbxgdCCtVw+YFPXinRSYhBPRWJxVZW2qVznDGu9M8yRZif92D1O79DUkJ+6OmDg1TiYKzr3zmreRuY+hBpMEOgYqW9u/pX2J4Huvtvg/SJzyTbKpP0FfHMeWY467a+sfhJcrc/D/TCD91Np9jk1LKOtI5pjdakPSmYzUAJnimmnAUbaBjMU09akK0m3igCMrnmkxinE0lIBhpMZpxpBQA1hiilNFACClpopSauxIuKSgGiiwADS/SkAp1FguJSigCloC4mKWjrS4pAJmngUm2lFADhTwvrSKPWpAKAGSAHg8gV5L8adTFno72zbc3kwwueioM/wBa9blIRWY9hXzh8ZNWa+1Uw5CxW6tECO7Ekn+dNDRyPw+01fE3jvSLCb95G04llHqqc4/lX1m9uzRGYAAZzgdq+aP2f7Uy+OZboji1s3bPoTgCvou41cxw7A2AK5a9uazPYwGkbiXNw3AccCqBkUtxjntWXqmvYDZI461mWc93rF0kFr/EeWPQDvXE4Lod7lc7XbEIlClSCMkis/VblbS23dCyk7fapYbY26RxszbB1J6sO9YfiG4+0GTA2oT8o9AOgrN3vYSSOWuwbuV2Y5B4rB1LRHmVUfdsByCpwAfp3rdWZQ+wkda2obFbm3CEAnFawnymE4cxxWp3Mdr4RutNbTYJZWC4mjQDeufmBPUEjvXmMelS314kdrF9kUEszbsKq++a9vvtBmjBCgundTXO33hlbqRi1t7Y6A13QxKaszgqYN3ucPoGs3Nte/ZAw2KxBAPH1FW/E8n2u2PtW2nguC1cyrFtYDHWs/WbFYbNhnJApc8XK6FySULM4JMiJlHbtVccSOAfvVZHE0i9Mmq8vyuGxz0rsicElqJuAYOP4hg1aRvlPPUVVYDDA9+RUkGWTHQ44pslF22bBBPc19O/A5yfBlqjdGTj8GNfLtqcFC3ADc19NfA1j/wiVqpAA2yDg981DKPSzTOlPIppFSFxhFJnFONMNOwrhnNBNNoxmgLjSATSYp+MU3GaVikxCOKZinnimZqbAFFIaKBCY96TFFLWggAozRSnHpQAClpByKWiwCU4DPFIKXFFhC49KUA0DrS807AAFPUUlKKQx4FPUZpgp6HFAFbUZhb28r8DaCcn+EDmvlLx7dvd60o5zln2nsWJI/TFfTPjCZ7fw/fTBsHyyB+PH9a+XdZH2rXriTflI5VX1zgAcULcaO5/Z3sQmqa6zAhlgRB/30a9M8SSvZxllyB1ya87+Bs7WviXUIONtzAT9SvP9a9I8WWrXNscHsRiuLEfGevg37iOV0fTbjWnNxdnEJOVTOARXdadpUcKDyR5ZCnDDiuaimvdGsbKZLQT264WUA4YA9CK1h4tsSFVzJF2I25C/lWTTex0xi2TXutS2tp5d0EdkGA/pXF6lryzyeWpQFumT1rev3TVZGZ2XyccMnIYVyl3odhcSs5QYByGzyKnlT3CTktCK9ZUtTIAQ45rpvDFwLu3XIwwFYK2EKIoLPJt/vGtjQ5BDM0ajaSOBScUOL1OheNWGSPxqheWkRQnGDViW7xnsaz7q9DAgmo5bHXpbUy7+ONVYVwXiRQiOFHGK6/UbkDPzVw/iW6+RxnrW1JanBiLJHneoSeTOWHrSTKHG4HI4NV9Tk8+6IB4FPjYiJR09K9SK0PCk7scmGyCc+lOgbZKBgAGoyCF4OPanKQ+H9OopslFkDYR9eDX0x8CPL/4RCIpncsjFs+pr5ocYPA69PevpT4Al28LSZIADkD0xUMpHqOflBHNNJpyr8g7Y7Uw8cUCENMpzE0wnFAmHak6UbjSHmkAE0nNB4oDZ7UDENNp3emnApMdxpxRSE0UgEFLQKU1pYm4YpcUmaM5osFxwpcc0gFLigAxzSgUCl70AGKKdRigBRRigcUpoABUqjtTFp5+VGY9hwPegDmvHo83wxqTbiFhhLHb/E3H8q+Yr2TFwpQD75kPY819G/FDUhY+FprdD81z8hwep7ivmjU5gbljH0z09aSZaWh03gLXE0XxRpt47lYjP5cn+64xX0DNZG9k2MflJ5NfJ8s3lwnDYcAY9sH/ABr6X+FvilPFvh20vdwM6L5M6/3ZF4Ofr1rmxMX8R3YWpb3TopbKN9OeAKCdpAH0ridV0dObiOUrKqfwevow9K7qSUxzSE9PSuM8RWzXEzy28gAbqpOM/SsKbPUpStucDd3OoRzFmSWEDuhwre9OtPEm1gtyNwH8XQ/lVzVJrmA7UhkIAxzyKxWN1cdbeME+g5rZ2Y6nKdLFqttc8Ryg+gzzUsV4YJFuAeFOCR6Vzdv4aimG6fKnr8rbf5V0VhpXnRiFcpCMbiTnp2rGSS2Oa+ptXd35i7gfwrGur/AIzVnUZEX5E69sVzswkLMWPyjrUpGjqtKwy/vcnJPFefeKtVAyC2MnArqdavIrK3d3cAAZJPavJ9V1F9Su2l6J0Ue1dOHp395nnYuvbQe6qHyHD+4qaSIiGNlPfGKoW4AateQBrdPXcK7kjzr31KqShuvrinqAjf7L8fSoZF2gjod5NOgfkqep4qWhpmgCdiD+JeDX0V+z9cKfD80GDuWXceeMGvnSLO3J5I617r+z5c4kljHUkrj6Yx/WoZSPccALTGqT+D8eKjIzzQSMNMIyaewpMUwGYxSE0rUw9aAFJ4pucUUZoCwhJpDS/WkP0qWikNxk0UpFFKwXADFLik6UZNamYlOC0lLSAWlHWmjNOFIY6lFJS0ALmj2pvNOWgAxTwOKaWpR69qBki+1JKxVAARknjP8AP8KA20VgeK9ej0nSrm7eRVXHlpz99sc4+nc0MaVzy/4t+JEudVWxhffBCpDc/fPf9f5V4xdEtKZM/dyzD0J6Cuh1bUJL6aa4kfLtnr6VympXgKiOPPB5PcmojuavREctwHYIem7BPrXoPwL8WSaD4vXSJHxa6mdhB6LKPun8eleaAgAH05P1qUXM1lfQXtu5SWF1mRvRgc1c4c0bE058sk0fat3AC+eu4da5nV7IkNswPUVU8FfEW18XaDHqMDDzoxsuID1hfv8AgeoNaC3q3LOp24PUntXmOLi7Hu03GaujmZ4t0ZR1GR6Vnm1QE7UA/Ct6+RBJgMD64rOuLqGL5UAJ7mlzEziVYrdU+9U/29bdSvTFZdzqaoSN3NZ0t2WBZmoSM3KxoXV2XbKt+NZOoalHbwvlgMDJzWde62seUQlz0wK5rVbmadS0zYGOFFawhcwnVsjC8W68+ozeQjEQg5/3q5vv0qxfNvuGNQovPqK9GCUVY8qpLmldli1QtJtrXddkSA8HrVDTY90pJ54zWnIvKA8/ITQCWhRkQu68emahlUxvuFWn5bvwAKiu1+UEVQi3ZneufbmvWvgheNBqUgU4KAS4H1wf515Jph+Ug9Ca9M+B8wXxYInPyTQSRNnoT1H8qyZotj6gwNoI6EZH0qEjBqPSZzLp8YfIdP3bZ7kVO4yc0EkZAqNqkOabTAjamH1p7DmmmgBhpKdimk0DE60ZxRzRg0gEJopM4NFIAGaXtSgUYrS5AAUtKtLikAmM0oXFKBTsUAIKXPFGKNuaQCdaOgpcUuOKAEAz1pyg5wKAKg1C+i0+0aVwWPREX70jHoopjIdTv4bSJnlk8mFRmSUnhB6D3NeEfEvxqus3H2K1VorW3GBnqfbHpW78QvFMsVuVmkQ3BJMca5CQeuB/E3+1XkEhkvpfMkJIJyF/maiWprFW1K1/c/JwOScDNYVyxDEk5f19K1r/AO8WyMD+VZITzXHueaqKFIQjAx7c0+5AaOLjkjiif5SE75omxm3U9QSasgseF9e1HQNVS5sLhoXb5XHVXHow7ivcPD/iy6vbfMkCCRxlip4/Cvn2IhLsMOz5r2TwVJ5sSLwR61zYhdTsws2nY6qe4vrjJWFgT6tWXdQ6iAV2AZ6ndXTLDsUMOR60ye3SSMnGD61x3O/VnCzQ3IYjjd61Unt5pB8zsfUA8V1d1ZqCazZrUBvalzEOJz32EIMgfjWJrQCRMAOa7G5h2rjtXE+JZjGr9sA1vSd2c9XRHEz4MrketKFxGMU1xtG48lqmKkFEHUDJr0DzWaOlR8P/ALo5qzdELnPUDbU2jW4MM7E45AFVb9j5jKeu4VJa2IHY4ODzxRfxkRwnGN9Mx8+Ce9T3QM0sY67EA/Oncmw6xUoVXPWuv+HV+2m+JbRwT/rVDYPbOP61yETAXBI4GQK29FcQ6tFJkgFwc+45H8qiRotj7FtyEkbyx8r4IPqRVhj1GOO30rC8L6kdU0a2us/PxuA7cVunjtSIaGn1xTOtPyD0prDimIYajapSKaRQBGOlIRTiKQigEMpCaU000ihueaKXbRQK44U4UgGKeFq7EiAUoFAxmnYpAJinCgCnBD3z+FACAd6MmsbUvG3hrR5Zor3W7OOaAbniVtz/AEAHU+1cPqfx80mHI0zSrm6x0ed9i/kOaLAeoZFKBuPAJ/CvBr/48+IrjItYLCzB/uR7z+tc/e/Fbxddk+Zrl0g9IsR/yosM+mzFIOiMR1yRwK4Xxf4it7TzZ4pIzJFmKNSQSufvPj1PT6CvBJ/FmtXhPn6rfyK3XfOxFRi/aIMQ5JkGSScn6ihlRRd17Uhq18087yySZx9fQD0FZ93Iq28UEUZSQDMjn+I0WyLdXIbDbVG44PWoNUuRltgG88ADnA/pUmhjXR3sVPQH8z6VD5YgiJkxvNWzEsaeZI2SOcnoKz7mTzXwO/T2pohlY7nYse52illbfKpB4UYFPYiKMN35Cj+Zqtv3Dd0AGRVkjGG1iO+eK9X+G12skaDo3Q15S+FdCPSu58B3bWl2gP3TWNZXibYd2ke524zGM4/Go5Y1HTIFMsrgSW64I6VMZBjkV5jZ66Me5hyxAY1TeAKDx+dbM6BqzrgbQetIGjC1FPLjYnGK8u8V3Hn3BiU/IvLGvTNcnVbd8n6j1rynXWIlI53Odxz+ldmHWpwYh2RiMPMuAuOpCirDDNwfriooOJkPowb8amwBO27+/u/Cu8886TRVAsmJ5LLkGs29H74g4zurR0mXGmSAcFTis68cvI7t1ODUl9Co2dyDHU1bhKeaznBCn+VVpSFiVjwQ2DRE58psdSTQARybpWfHVs4rbtVeV1MQ+dcOPf2rnoyefQKDWvDMY41kQsCMYIOKljifTPwz1uO40aJI2DSfLvA4Ib0xXoYfO4jvzj0Pevkvwz4+u/Cd5BcJHFchVKmJyVDjryR3Fen6H+0Lo7Ef2tp19bsx5khYOPrjrQhM9m4OSKbXL6J8TfCGuhRa67bLI3SOcmFj+DV06ESRiRPmQ8hlOQfxFBNg4phAp5wPxppGDQA3imYp5FMI70Ahh4qPnNS0xutIobmijpRQKxIRzTweKavWlzWhIU76UlOUUAC1yXxV8UTeF/CzPaSeVeXr/Z4pAeUGPmYe+K6/FeJ/tB35Oq6TZAkLHbNKR7saEgPILycm4jJYsd33ickn1JpHc+tVb1yHXnncKkZucmqAl3Y6mmM3oaYWyM0xmoAVmI5B57VNbx3N9M0UEbyHGPl9KrBxkFuB3NadneiKBoYVJY4B8vuT0BP9KiRUS5E76fbSRghp3ODs5wPT2rJmm8qTaBvkxngjA+tSXCFeHlYBf4U7n61lzzKCyhxGvcDk1Jdxt3OSSzSZA7+v0FVC3HIIB5x3alZ1OGAJ9C3U/h6VC7PkgfePU+lUiGyOWVpJMHjPbsBSOCFUDjJp0aZlBxkAGlkU71AP3aYhJR8yewrs/DUZNvHKvJFcY5yxArtfBcgeFIv4lY8VlW+E2oL3j2Lw9/pOnI2SCBzWmsBPWqXhiPbb46AjpWyFGcV5Lep7MVoUHtWPb86zb+3ZUOSa6V4xjFZeqRAoRn601uEtjhdRtFlBLAkA5ry3xGGa4eUjAZio+gr17U28pXwp2gEn3ryXxIw3RJ3BLEV3Yc87EpmDCP3w4p/8TnHIODTFJWZT0Bp0x2SMSeD1rtRwG7o53x3EZNVJFBcg89UPse1O0qYx3pHZ14x3NF0DBctu+4/P4+tIroQgeYkiHqV6+4qvDkI36VZcFCJF5AODUbIoc7T8r9PakMqx5B5+lXrOTI2MccY5qhysgyOM1PEcNn0PNDBMsXJKyIpOOO9Ak6f0p7RfaYwM/vE6e9V1Uocdx+lJCZaWXjHWtnRPGOveHpA+maveWuOqpKdp+q1gqTjnvTx061VhHsmiftGavaxQwavplvqDK3zzo3lO6emBxu969t0HX7DxPpFtq2mzeZa3C5Un7ynupHYivi1Gyxwehr339m/UpJdO1rTWclIZI50X+7u4P8qTQHslMan9uetRtUgMPIpKdTTSGMI5op2KKB3JQKMUgNLWhAop4ptPUY60ALjg18+/Hu4jl8ZeUjBjb2saNg/dbqR9a981G+j0vTrrUJB8lrC8xHrgZAr5K1rUptXu7i+uWLXFxIZZCff/ACKqIHOXrdD6MKnzlQag1AfIcVYiGY1I6YpiE7Uxz2JpzHFRSMGpAQzOQrKO/FdJZWsejactzJzNKPkTsuf6+9YOnwLNdZfOE5xjv2qzrF/I8jo7HKDZgn7v0qGaRKuo33mSkRnj0H+elZk8204OMnoq9PxqzDHtHmMASfuj096qRp59xk5Oec07Et3JkQ5y5y56UOojQnqe5p5+XLHsaQDC7yMqvI9zSGMii2q8h+4nU+vtVdWy7Mewq7dnyLZIV+853NVJ/kQL3PWhCYyMkHJrvfh9D52VAGRIMH04rgo+nPWvQPhrIUuJQT0dTisq/wAJvhvjPZdLQ20aKSCa1SDgHBwazrECSME1qW3JKycc8V48j3IoRkz2aoJbUSISRWgYwoyapyyux2wElejN2FOLHJHIa9aZEiR/eI6joteNeLrf7PqAjbn5Tk+ua+gtTtI44GwMjrn1NeEfEBduvyDqAi134V3Z5uMVkclIdu1uwFFwM7WHtUrKCrqe65FNK74lPoK7jzbDtPnKSKR99WDLWvqKi4iMic7Rk/Q/4Vz24xyb14YNxXQWU6XFsQMBx94eooGijA5kUxk4Zf1oDbG4HHp6Us8Bgm+U4x0NSbQyhsAE8EHsaAIpYN2ZI2ByOlMTaW6YJHNTIxjb5hgGh49xDLgEc0h2FVmj2yDkDg4qd9ko3r97+dMjbI8thjIqIZhJB6fy96QMXBzQDxU2A+OmcZ+tQTcKSDj2NUiWhsTck+9e2fs1S/8AE312Enl7WNx+DGvFIgAor0r4D60mk+PLaGVgqajE9rk/3iPl/kaGI+miaY1PNRmoAbSGlpppFIQmimsQKKAJhThmgCnAcVoSAqQDNNxmnrngYoAw/H6SP4F10RZ3/Y2Ix7da+TBNvHXJwD+lfUvxV8Qr4e8F3jJgz3w+yRA/7X3j+Wa+TbiX7Lc4U5HSqiITUB+7OKktDutkI54olw6ZHINJpvFsyD+BiDTAjlO3iod3Jp85+fFRjruPAFIDS01RAscuM+ZJg/QVS1dRJfsF+794n1q0522toqdCCT9ajeEHYWbG7hj6Co6mi2K06/uQVyCTtHtTLaMRxvI2c9AKvTQeXbxM3Q7m2+lQmIMN8g4z8q+tJsLFTY0snH3RUass9wsKH9yhLM397FOv7lkzDHwD1I6mmIn2W12kjfNyT6CgTElbzZXmc/KOBVRyXfNWJn4EY/h7epqDaBwDnuxpoTCMfMK7r4ejEtw+ehWuIRTnOK7f4ejc91gjI2nHfFZV/gZvhvjR7hpHMSkjqAa2Ts8vcR9MVhaW2YYz7Ct2PBTDV4rZ7yi+hFdW15bTKl3tSB2McYRskkDPNPMaxrtXgdqfL51yy/aZ2lCsZFG3HzHgmpCAcelCdgUXbUxdWUiEr2NeCfEBMeJbxM8DaPpxX0LqcO4BAOa+ffH7xyeJdQ8tlkAkwSO//wCqvRwerPOx+iOU24YA8HpUa9WB6elT43Z/vLz9RUUilXBrvPLRBNF85I6etTWU7QtnPLfKaklCsOBx3qAJg+3XPpQGxpB1kj2v1qMoFwrH/dfsR6VEGKqO+T1pwn8rO4ZXuD0oGLuz8rfn608DYOc47EdRTCI5c7W2n+7601JWiYKxJHqaTGiwo3DJxnsR3pZlDoHXr0IqRFSRdysPqKaUK8etTcbVyqjlRjHGfxpS4kGxiee9EkeG5qFiRIB2qyCblTj0q7Y3z6feWt5CxSS3lSVSOxBqmr5AI6j9aIY2u7iK3iyzO6xqB6lgKAPt60uxqFnb3ijAuYkmx6bhmnMMGo7C1+w2FpaY/wCPeCOI/VVAqVzipYiMmmsRig9aa3SkUiNjRSNRSsMuA04fWkUc0/GBWhA4AU4U0cipI13EL6nFIDxH9oHWGk1TT9JRsJbwGd1/2nPH6V4jqMHmxeYByODXc/EnWRr3i/VL0PvjMxij9kTgf1rjyAQy9jWiEZdpcblMTH5h0qaylEN3JGw+WVcj/eFU7y3eKQstLFKJ2jb+NCMj+tMCe4YbjioAcnANT3eBKfrVUArz6HNSwNWNt9rbEDLBitWJUQgM4IC/Ifw70zSLVp/kbjad7f7C+tOvrlnlZFUADp6D3rNmqK085eQKPur61VkueTK/zEcKD60sjdVDfJ1Zj3qLYkiPcudsaHbGp6t70gZWgiM1yDIe+T9KmcCR2l/h6IKfZwlvnOfm7+3p9aS9cRnYQMr/AAj0p9SSo4ABIJx3b/ColIbgDj+dOZ2mb5uB6VYihVVyRwP51QhqJg4xXYfDhM6pdY7Qj+dcsi55I5Ndn8NIw2q3mO0K/wA6xr/w2b4ZfvEew6WdsSDHaugiwVBx2rD0+MiJPoK2bY445rwW9T6CK0LKrnsalSPk5FOiTK5qYIO1BVzN1CIMVPTmvmHXT52q3jj+Kdzn8a+o9QKxxs7dEUsfwFfK15IZZpZD/G7N+pr1Mv6nk5i9kZUm6N9w6g5B7U51EsRdB0OCPT/61TOoYHgHNQRp5Uow3yHhlNeizy7ixKdvzDoOR6j1oaPB9QR+lWlt2B+TBK9B/eHpUi24Kgo3BPy57expFlHacY7EZzSFeCT91h37Groj2nZjqfl/wquY96so4xzSTJaKiBk+U54PWpllGdknIPrRGMx8jLJwy+opGgDKyk5HVT6U2CHANCd0ZO30qdbxXXB+RxVSOR4/lJoeMSDOdp7UrFXLZfzDhlGexqqykSNkg846VHFM6NtY9Kmdsxb+/ahCYK21SQeSOParmhX0mi6pZ6pGiSSWkyTBXHDYPINUI8lQT36Cpg+MqO4xTEfbem6nFq2n22owf6q7iWZPbcM4qVmzXK/CuYzfDjQGZg5FsQTnphjxXT7vXrUABphNGfemnnmgYxvrRQ/WigDQGM0pGaaKdzVkjhxVHxFqY0bw9qWoE4MFs5H+8RgfrWggzXB/G7UPsPgZoFbDXlykX1A+Y/yoQHzvcyF2OeSeSffr/Ws+RiGz6VYmbJOCcVWk+YcGtBEM4WRfesueNrdvMTtV13KNzxUcrLIp9PSpAmuQGCvnAYA/pVUNgghc5PCf3vSrRAe2ib1XApLNQbozMMiIYUdt1DGtzftLdrSxwCDK/wA0jnpn0+grKu8EOy/czgZ6tWtBF9otGDE7FGc57etYN1K9zPsiHX7voBUM0sRxRm7mx0iX7zUl0BcXCxIMRoOPpVxlFnbeUozjlvc1XgUqjzP09fU+lSgBpDAAeFYDKj0HrWYxMrnHOTyfU1Lcyl2JY5Zjz9KamWIRAEHVjVJEtirAsABf5nPRR2+tTIjOMscY7UiIMk9amUVSJE24Fdl8LRu1S+H/AExX/wBCrj+1dl8LP+Qte8dYV/8AQqwxX8NnRhf4qPZ7NQY17ECr0LY4FVLcbYV6Zx1qaNiGGa8DqfQLY2IDxx3qzyOTVK2fAWry8rnqKqwmzF8TTeRo2o3DdI7aQ/8AjtfLUpyM+vNfSPxJujbeDdXccb4fLH4nFfNj9T7V62BVoXPHzB3kiF2IqCTnPPWpn5FQt6V3Hnlmwn3EROcFfut/SrzFVblcxv8AeH9RWMFIOQcHOa0Y598e8/cfhl9G9aTRSZYniXAJyUPRqpzHDKcfOvJ/2hUizeSTGx3I3TPao3IBI6r2PpSKCWOPeHQ/LJ83+6R1FQsoUjBwrHv2NSA7dyMflflPrSYBGGGQ3B9qQETwh1z0Pf2qsxZcHv396tqdr+W56d/UVFeJsc4oFYhZPOQkcMvNEZzGydjikQ7WGc4PNG7adgx6mmIkVgDn06U+FSX3d/SoUUsfarCHaaYj6P8A2f8AVDdeD7rT2fcbG6IA7hXGf55r04mvAf2eNV+z+I9Q05mwt3bb1/3kOf6172D0zUsYtMNKzYppakNCNz3oqNmOaKVwsaYpwpimpBWhJInWvH/2h7/jRdPVuQslww/HA/SvYAce3vXz/wDHi98/xp9nOALa1jQY9xk00DPMZSKqtwasSGq7CrEVp03jNUXylaL4x0qpOmQcUgLFm6vZDjO1iBT4CS5Re2M++ar6cTtmQdFwwqzZoXuCg4PLE+pqWNbmndzs0CWcQOWPzMoxn1/CqssSWoIX73UkdhWpaW7Lb/aZWIDLtjBH8I/irEvHMmcZCg8ZPX/61ZN30N7W1IbqY3DIij5SeB3NJfsEXy8nEQ5A6FqZDMPtJc4wOFH0qtes+c7urdPXNXHQzkyCIMzliKswLt4Pf9aIoSEwT1qZBng9apEAq4GKkC0oHtTgKYEbLXUfDnU7PTNTunvbqK3V41VTIcZOa5tgMVnXGfNHQ1nUgprlZdOfJLmPpO38SaPJGpTU7QgD/noKcNfsnbi9tyPaQf4185RMcfdX8qlV8dh+VcSy+Pc7f7RfY+nrTXbDI331qBjvKv8AjWi3ibRkj+fVrBB7zCvlAyE9RmjdnnatP6jHuH9oPse3fFfxbo974YmsdP1S1ubiSWPdHE2TtBzmvEW5psZy7ZA4HYU4nkV10qSprlRx1qrqPmY0jioitStTDxWhkRkcVLCwSQq33G4+noabjNK3yqCOwxQCEnLK7KwHBxUaz7Gw3NSv/pEPnA/MeD9RVWQbgexFSWW2cFBwNp5BHY0ofCDPJ6H3qhFP5bbGztbp7U9pTGx7q3BpBcsykSIGXt0psbCdNrffAqAS4JB4B/nTPM8ucN045xTHceEIUgjBB6VF1Jq5OQ0bMvcc1UFNEslTgCpAajU1IvNMR2Pwu1Q6R460a5DBVacQvn+6wxX1S+EJX0OK+MLO4e0uIp0OGidZFPuCK+xLW6F9aW9yOk8SS/8AfQBqGNE5bNNLcU3tSDmpuMDRQeKKBmoq4qRaQCndq0IuPAzXzH8Wbxrrx9rL9QkwiH0UV9K3l7BplnPfXMnlwW0bSyN/sivk7xNqn9t63f6l5flfap2l2f3QelUkIw5Rk5BqBnx1qdyQarSrnkflVAMfkVWkPB5qUvhagkbNIB2nsVuWXPDKRWzo1sst27NjCrliemKwIWIuEbsGyT7V0MEghiYxgEFuM9z61EtioLU1by5a6ZYdoBb5Ao6KvpXMaxPEWk+zvmOM+WD6t3q/d35s7KV85lPyq3qT1NYlymyCCD0UufqaiKNJsLbdtViAcqcCmaipV41X2OPwq3DCfs8DDscGl1OPa9vgYOzGfpVEMaBlQRTgBjpzSKP3ak8nFOXpVEjlNP600cUoOaYhr9KoXH+uWtFunNZtwcTrQwJ48gVKOtRRn5alUevNAC4Jpp4zzTu/FNagAiI+c0daIsCNvc0CgAoIzS4pKQCAYGabOdkTE9hmpAuelQXZygQdWoAj0wkiWJu43CnzqFm+UcGobb5JgfwNWJG8+SLA65GfpUlrYozRkE+xyKXdvjGat3cJCk+uDVSJDtINADE9PUUSfwnvSBcOoPbipHTgA+tAFy3w8bJnqMVUVdpOexxUlvLhyO+aSbidqaBjlFSDio0OQKkHtzTJH5wMc85r6z8EXRvPB2iXDdXs0B/AYr5NAyQPXivp74SahFqXw/0wRNzbb7eRf7rA5/lUSKR19ABowRS5qChDmijPNFFwNfdSqRio+vSpFFbGRyXxeSeT4d6otsWBzGZMddm4Z/CvmSZ24B57Zr6e+LF//Z/w+1VgcNOEgX/gTc18v3KEjI4OKpAQvjvULlcHmmtuH3jUZXd3oAilZe1V3kxzip5VAzzVWQ7e4pAQyylgccL1+tb9vN58ET8ABAcelc85wMkjFanh6TzpRC/dSKUtiovUdqzGaVASNpAOOwpl0hmlLj2UflUmsxmOQ4wRgVMIQbWGQj72Of0qFsaNajoIvOszsHKkEY7+tNv2WawgZhlo2Kk+lSaTKIJGidgMkpn0NV7k4SZG4UvmgVtBicR7RyAaFPHGOKjgfJZT1I4pQ2DgcVZmTjkUdKYHxRuzTEPPIwazbnmcVo5yKz7n/XChgTw/dqTNRIflFOzQBJ2600nIOaTdikJ4oAeoxCB06ml4xxTSfkX6UKTihgJzn2o4NKaAtIBy5x71TnYNOf8AZGPxq452KT6VmhssW9TmgCVBggg854qWM7hGRxgtUCNgZ9AantlAhQt/HkVLLRNd/NCMdSwH4Uy3tsw78cFv0pZGy2Kmjl2Q4xwsZP40ijMSMtOfQGpZI9p2nsamt4wobPJYj8O9MmOQX9QTTuKxVjIE/HFSTgGTFRwLvk/WjJdsnvTRJKlTA4FQggcU7d6UxEwP59q9o/Z51fE2s6S7/K6pdRg+o4b9K8UDcV3/AMD7w2/xAtU3YFxDLCR68cVLGmfSWcmikFKBUFiGilKmigLmkDUyjIqFRUykgdK1Mjzn49XPleD7WADme9X8gua+fJW+bpXuX7QV2i6Zo9oHHmGaSUr32gYz+deEuTzVICneRMG3DoeapmR/4TzWo37wFD36Vl3MZjbOOKAGs7H71V5l4qTeHGCaQjA65FICme4qfSZzBqMJH979MVBMMNUUchjmRgf4hQwOv1SBZY45wCVIxnHB9qr6eTLayQEghOR64PpViKUTboGyFIyvscVXhzbzF8cYKsBWb0Nk7lO8kC3IdRtOM/jS3E32iMOTyV5FQ3g3Els9c+9JEymPHfH5UIT0GxOUYE/SpmPzVHtz1+tPPIBzVmY/OelOBIpgyKcOaYDxxVG5I84VcNULo/vAfehiLCMMU4HHNQIeKdu96AJC2TmkJyKYWprOAvWgCz0RPpThxTQP3Sc9qUcUAPxxmgAk0A0oHegCvfPsix/e4qiKn1B90wTP3RmoAaQCsT5bAd604YxFHCh5IXJrKLZKjpk1eeb98ducAYqJFxElHXaeo6elSyfLCwA9FqtE5aZQ3c4qxd8vGoOd7nj6VNywi4jJPRf5mo7gYR1/2ABUs4MSrEem3eaikPBOckimhMrH91ESOrcCmxjims3mOF9KkAwMCtDNjlpwNMBpepoESA5rqvhnMbbx5oLqcE3ar+BrlUAFdH8PWH/CcaGzNgC8jqWM+sPX64pSe1NJ+due9O4qCxM4opSKKANNTzUyZYgDqeBUK1V1zVF0PQtQ1RulpbvKPdscfrWqMz56+LevnXfGF+Ufdb2bC0hx2C9fzNcI4q08rzh5XYs7uWYnuTzVSQ1YEDttOR1FMukEiBgKWVsUiHKlTSAyXXy2NJ5nerN1HgnvVRkAqQIZ23VXYEHP41aaNQMk1WlbJ4oA34pzhX74qcuJVD8bv4h61lwSkKAeBgVZ83JGBTauNOw9o1kVyD0qukXlHHPPNTBiDle1Sna5BHQ9vQ0khtkciDYCOOKjUZQc9DU78pjHSoYx87L6jiqJF/GlWm/xU8CkAp6VnXZ5q+1Z15x19aQDkfKg0/NV4pQBipBID6U0A8tSM2eMUm4U0sKANJf9Un0FAXIpIjmBP92gE9KAHcVIpAAyaiBpJ3CRsfagDNnbfO7Z6mmZI6UY498000gHqfmB6kGp4svFuz3NVojmQemDV7SFE0gibHzdAfX0qZFx1II2KSqxPTpVgyl3jbPcj6UX1qYpjhcAHt0piDJZPQ5FSWiWVzJK59QFH0pNwZTnAwtDjGeQM8ZqNfmjCtwScUCKqD94T3qYZIzUG0pNxzg4qfdxWhkxyjJp3A7ZqIMWPoKk6DigBdxJq/otybDU7W7Bw0EySA/QiqKr371MBhDjgkUmNH2YhWVVlX7sgDj6EZp3SsjwRfjVvBui3nUvaIrfVRg1skVkzQaSaKCaKVwsaqrzXFfG27Nn8OrxVJBuZooSR6ZyaKK2W5kfNsbfusD1qKU4FFFaAU5DmmoTmiipAjulCqOetZs7c4FFFDAgY5HWrfh/S5Nb8QabpsS7nu7qKED6sP6UUUgLmvxxW3iLVbaIAJBdyRLjphTt/pVRZeMUUVSAlR+OD1qePpxRRTAmk4X0qmzbJQ3YUUUASsPmNOxjmiipAY5NZ97yv40UUAVADTwGoooQDhuHam7jRRQBrW/NtHz2FKDRRQA5DzUF82IwPU0UUAUjUZoopAC8EH05q3ZuY1DoSGQ7gaKKmRUNzbvvKvoo3VADIvTphh1/CqMcW5wpb5xwN38qKKhGwk0PyfMpAPFVkB5Dj8e+fWiimiJENxEYn3DofSmLz1NFFWjNkygAUqkt9KKKYiUYHNSA9BRRSGfSnwOu2uvh3aoxz9nuJYh9M5rvfWiisXuaCUUUUAf/2Q==" alt="Portrait de Salma Aït Bouazza"></div>
+  </header>
+
+  <div class="kpis" aria-label="Résultats clés">
+    <div class="kpi"><b>95&nbsp;%</b><span>de livraisons à l'heure vers le réseau Renault</span></div>
+    <div class="kpi"><b>−15&nbsp;%</b><span>d'écarts de stock sur un parc de 2&nbsp;500+ véhicules</span></div>
+    <div class="kpi"><b>+20&nbsp;%</b><span>de réactivité sur les commandes clients sous SAP</span></div>
+    <div class="kpi"><b>300+</b><span>bénévoles rassemblés dans l'association que j'ai fondée</span></div>
+  </div>
+
+  <section id="parcours">
+    <div class="sec-head">
+      <h2>Mon itinéraire</h2>
+      <span class="mono">Départ Tanger · Arrivée Paris · 2023 → 2026</span>
+    </div>
+
+    <div class="route">
+      <div class="leg">
+        <p class="port">Escale 1 · Tanger, Maroc</p>
+        <article class="card">
+          <div class="card-top">
+            <div><h3>Analyste Supply Chain</h3><div class="org">MSU Trading · Stage · janv. – juin 2023</div></div>
+            <span class="code">REF · MSU-2023-SAP</span>
+          </div>
+          <dl class="rows">
+            <dt>Le défi</dt><dd>Les commandes de clients internationaux manquaient de réactivité entre la saisie et la livraison.</dd>
+            <dt>Ce que j'ai fait</dt><dd><ul>
+              <li>Gestion des commandes clients sous SAP, de la saisie à la livraison</li>
+              <li>Contrôle des quantités, des délais et des documents avant chaque expédition</li>
+              <li>Échanges quotidiens en anglais avec des clients internationaux</li></ul></dd>
+          </dl>
+          <div class="stamp"><small>Livré</small>Réactivité +20&nbsp;% · Taux de service +10&nbsp;%</div>
+          <div class="tags"><span class="tag">SAP SD</span><span class="tag">Order-to-delivery</span><span class="tag">Anglais</span></div>
+        </article>
+      </div>
+
+      <div class="leg">
+        <p class="port">Escale 2 · Tanger, Maroc</p>
+        <article class="card">
+          <div class="card-top">
+            <div><h3>Analyste Achats</h3><div class="org">OCP Group · Stage · janv. – juil. 2024</div></div>
+            <span class="code">REF · OCP-2024-ACH</span>
+          </div>
+          <dl class="rows">
+            <dt>Le défi</dt><dd>Un grand groupe industriel international devait sécuriser les délais et les coûts de ses approvisionnements.</dd>
+            <dt>Ce que j'ai fait</dt><dd><ul>
+              <li>Suivi de la performance de fournisseurs internationaux : délais, coûts, qualité</li>
+              <li>Analyse et négociation des prix et des délais avec fournisseurs et fabricants</li>
+              <li>Relances et plans d'action pour éviter les ruptures d'approvisionnement</li>
+              <li>Travail au quotidien avec la Finance, la Qualité et la Logistique</li></ul></dd>
+          </dl>
+          <div class="stamp"><small>Livré</small>Plans d'action déployés sur les délais et les coûts</div>
+          <div class="tags"><span class="tag">Performance fournisseurs</span><span class="tag">Négociation</span><span class="tag">KPI achats</span></div>
+        </article>
+      </div>
+
+      <div class="leg">
+        <p class="port">Escale 3 · Paris</p>
+        <article class="card">
+          <div class="card-top">
+            <div><h3>Coordinatrice logistique</h3><div class="org">Getaround France · Stage · janv. – juil. 2025</div></div>
+            <span class="code">REF · GTA-2025-STK</span>
+          </div>
+          <dl class="rows">
+            <dt>Le défi</dt><dd>Dans une scale-up de l'autopartage, les données de stock d'un parc de plus de 2&nbsp;500 véhicules ne correspondaient pas toujours au terrain.</dd>
+            <dt>Ce que j'ai fait</dt><dd><ul>
+              <li>Planification et validation des inventaires, analyse des écarts</li>
+              <li>Recherche des causes récurrentes et actions correctives avec les équipes</li>
+              <li>Fiabilisation des données de stock dans l'ERP</li>
+              <li>Reportings automatisés sous Excel, Power Query et Power BI</li></ul></dd>
+          </dl>
+          <div class="stamp"><small>Livré</small>Écarts de stock −15&nbsp;%</div>
+          <div class="tags"><span class="tag">Inventaires</span><span class="tag">ERP</span><span class="tag">Power BI</span><span class="tag">Power Query</span></div>
+        </article>
+      </div>
+
+      <div class="leg">
+        <p class="port">Arrivée · Paris</p>
+        <article class="card">
+          <div class="card-top">
+            <div><h3>Cheffe de projet Supply Chain</h3><div class="org">Renault Group · Alternance d'un an · sept. 2025 – août 2026</div></div>
+            <span class="code">REF · RNO-2026-DIST</span>
+          </div>
+          <dl class="rows">
+            <dt>Le défi</dt><dd>Des retards de livraison et des litiges transport pesaient sur la distribution des véhicules vers le réseau de concessions.</dd>
+            <dt>Ce que j'ai fait</dt><dd><ul>
+              <li>Suivi quotidien des transferts, réceptions et livraisons vers le réseau, avec les transporteurs</li>
+              <li>Traitement des anomalies et des litiges dès leur apparition</li>
+              <li>Tableau de bord KPI (taux de service, délais) partagé avec la direction</li>
+              <li>Négociation des conditions avec fournisseurs et transporteurs</li></ul></dd>
+          </dl>
+          <div class="stamp"><small>Livré</small>Taux de livraison à l'heure porté à 95&nbsp;%</div>
+          <div class="tags"><span class="tag">Distribution</span><span class="tag">Transporteurs</span><span class="tag">Tableau de bord KPI</span><span class="tag">Négociation</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="engagement">
+    <div class="sec-head"><h2>Engagement</h2><span class="mono">Hors du cadre professionnel</span></div>
+    <div class="two">
+      <div class="panel">
+        <span class="mono">2024 – 2025</span>
+        <h3 style="margin-top:8px">Fondatrice et présidente, Youth Initiatives Association</h3>
+        <p>Création de l'association à partir de zéro, recrutement et animation des bénévoles, organisation et pilotage des projets.</p>
+        <div class="stamp" style="margin-top:16px"><small>Résultat</small>300+ bénévoles mobilisés</div>
+      </div>
+      <div class="panel">
+        <span class="mono">2022 – 2024</span>
+        <h3 style="margin-top:8px">Team Leader, AIESEC Maroc</h3>
+        <p>Animation d'une équipe et coordination internationale en anglais, suivi des chefs de projet.</p>
+        <div class="stamp" style="margin-top:16px"><small>Acquis</small>Leadership et coordination internationale</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formation">
+    <div class="sec-head"><h2>Formation &amp; compétences</h2><span class="mono">Double Master · Bac+5</span></div>
+    <div class="two">
+      <div class="panel">
+        <div class="edu">
+          <span class="mono">2025 – 2026 · Paris</span>
+          <h3 style="margin-top:8px">MSc Manager de la Supply Chain et Achats (Bac+5)</h3>
+          <p>ICN Business School</p>
+        </div>
+        <div class="edu">
+          <span class="mono">2020 – 2025 · Tanger</span>
+          <h3 style="margin-top:8px">Master Logistique &amp; Transport (Bac+5)</h3>
+          <p>ENCG Tanger</p>
+        </div>
+        <div class="edu">
+          <span class="mono">Langues</span>
+          <div class="lang">
+            <div><span>Français</span><span class="bar"><i style="width:100%"></i></span><em>Natif</em></div>
+            <div><span>Anglais</span><span class="bar"><i style="width:95%"></i></span><em>C2</em></div>
+            <div><span>Espagnol</span><span class="bar"><i style="width:70%"></i></span><em>B2</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="skill-group">
+          <span class="mono">Métier</span>
+          <div class="tags"><span class="tag">Approvisionnement</span><span class="tag">Achats &amp; négociation</span><span class="tag">Performance fournisseurs</span><span class="tag">Gestion des stocks</span><span class="tag">Transport &amp; distribution</span><span class="tag">Incoterms &amp; commerce international</span><span class="tag">Suivi de KPI</span><span class="tag">Amélioration continue</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="mono">Outils</span>
+          <div class="tags"><span class="tag">SAP (SD, MM, S/4HANA)</span><span class="tag">Excel avancé (TCD, RECHERCHEX, Power Query)</span><span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Tableau</span><span class="tag">Spotfire</span><span class="tag">IBM SPSS</span><span class="tag">Claude (IA)</span><span class="tag">Pack Office</span></div>
+        </div>
+        <div class="skill-group">
+          <span class="mono">Atouts</span>
+          <div class="tags"><span class="tag">Disponible immédiatement</span><span class="tag">Permis B</span><span class="tag">Mobile en France et à l'international</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta" id="contact">
+    <div>
+      <h2>Prochaine destination&nbsp;: votre équipe.</h2>
+      <p>Je recherche un CDI en supply chain, achats, approvisionnement, logistique ou conseil. Disponible immédiatement, en Île-de-France comme ailleurs en France ou à l'international.</p>
+    </div>
+    <div class="chips">
+      <span class="chip"><span>salma.aitbouaza@gmail.com</span><button type="button" id="copy-mail-2" data-copy="salma.aitbouaza@gmail.com">Copier</button></span>
+      <span class="chip"><span>06 03 72 45 48</span><button type="button" id="copy-tel-2" data-copy="06 03 72 45 48">Copier</button></span>
+      <a class="chip" href="https://www.linkedin.com/in/salma-ait-bouazza" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+  <footer class="mono">Salma Aït Bouazza · 2026</footer>
+</div>
+
+<script>
+document.querySelectorAll("button[data-copy]").forEach(function(b){
+  b.addEventListener("click",function(){
+    var t=b.getAttribute("data-copy"),old=b.textContent;
+    function done(){b.textContent="Copié";setTimeout(function(){b.textContent=old},1500)}
+    try{navigator.clipboard.writeText(t).then(done,function(){sel(b)})}catch(e){sel(b)}
+  });
+});
+function sel(b){var s=b.previousElementSibling;if(!s)return;var r=document.createRange();r.selectNodeContents(s);var w=getSelection();w.removeAllRanges();w.addRange(r)}
+</script>
+
+</body>
+</html>
